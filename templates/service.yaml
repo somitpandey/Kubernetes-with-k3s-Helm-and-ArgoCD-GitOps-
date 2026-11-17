@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "springboot-demo.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "springboot-demo.labels" . | nindent 4 }}
 spec:
