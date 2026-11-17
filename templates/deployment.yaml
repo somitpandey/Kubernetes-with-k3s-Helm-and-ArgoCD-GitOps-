@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "springboot-demo.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "springboot-demo.labels" . | nindent 4 }}
 spec:
@@ -13,6 +14,7 @@ spec:
       {{- include "springboot-demo.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      namespace: {{ .Release.Namespace }}
       {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
